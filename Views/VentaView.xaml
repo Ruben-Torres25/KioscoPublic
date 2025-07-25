@@ -1,0 +1,49 @@
+﻿<Window x:Class="KioscoApp.Views.VentaView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Registrar Venta" Height="400" Width="600">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Buscar producto -->
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+            <Label Content="Código de Barras:" VerticalAlignment="Center"/>
+            <TextBox Text="{Binding CodigoBusqueda}" Width="200" Margin="5,0"/>
+            <Button Content="Buscar" Command="{Binding BuscarProductoCommand}" Margin="5,0"/>
+        </StackPanel>
+
+        <!-- Detalles producto seleccionado -->
+        <StackPanel Grid.Row="1" Orientation="Vertical" Margin="0,0,0,10">
+            <Label Content="Producto Seleccionado:"/>
+            <TextBlock Text="{Binding ProductoSeleccionado.Nombre}" FontWeight="Bold"/>
+            <TextBlock Text="Precio: "/>
+            <TextBlock Text="{Binding ProductoSeleccionado.PrecioVenta}"/>
+            <TextBlock Text="Stock Disponible: "/>
+            <TextBlock Text="{Binding ProductoSeleccionado.Stock}"/>
+
+            <Label Content="Cantidad:"/>
+            <TextBox Text="{Binding CantidadVenta}" Width="50"/>
+
+            <Label Content="Método de Pago:"/>
+            <ComboBox SelectedItem="{Binding MetodoPago}">
+                <ComboBoxItem>Efectivo</ComboBoxItem>
+                <ComboBoxItem>POS</ComboBoxItem>
+            </ComboBox>
+
+            <Button Content="Registrar Venta"
+                    Command="{Binding RegistrarVentaCommand}"
+                    Margin="0,10"/>
+        </StackPanel>
+
+        <!-- Historial de ventas (opcional) -->
+        <DataGrid Grid.Row="2"
+                  ItemsSource="{Binding VentasRealizadas}"
+                  AutoGenerateColumns="True"
+                  IsReadOnly="True"/>
+    </Grid>
+</Window>

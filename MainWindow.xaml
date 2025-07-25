@@ -57,6 +57,8 @@
         </StackPanel>
 
         <!-- Tabla de Productos -->
+        <Button Content="Abrir Ventas" Click="AbrirVentas_Click" Margin="0,0,10,0"/>
+
         <DataGrid Grid.Row="2"
                   ItemsSource="{Binding Productos}"
                   AutoGenerateColumns="False"

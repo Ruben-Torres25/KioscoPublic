@@ -1,5 +1,8 @@
 ﻿using System.Windows;
 using KioscoApp.ViewModels;
+using KioscoApp.Views;
+
+
 
 namespace KioscoApp
 {
@@ -14,4 +17,9 @@ namespace KioscoApp
             DataContext = ViewModel;
         }
     }
-}
+    private void AbrirVentas_Click(object sender, RoutedEventArgs e)
+        {
+            var ventanaVenta = new VentaView();
+            ventanaVenta.ShowDialog();
+        }
+    }
