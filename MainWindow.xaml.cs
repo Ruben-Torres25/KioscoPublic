@@ -1,6 +1,6 @@
 ﻿using System.Windows;
-using KioscoApp.ViewModels;
 using KioscoApp.Views;
+using KioscoApp.ViewModels;
 
 namespace KioscoApp
 {
@@ -20,5 +20,17 @@ namespace KioscoApp
             var ventanaVenta = new VentaView();
             ventanaVenta.ShowDialog();
         }
+
+        private void AbrirCaja_Click(object sender, RoutedEventArgs e)
+        {
+            var ventanaCaja = new CajaView();
+            ventanaCaja.ShowDialog();
+        }
+        private void AbrirClientes_Click(object sender, RoutedEventArgs e)
+        {
+            var ventanaClientes = new ClientesView();
+            ventanaClientes.ShowDialog();
+        }
+
     }
 }

@@ -13,5 +13,7 @@ namespace KioscoApp.Data
         public DbSet<Producto> Productos { get; set; }
         public DbSet<Venta> Ventas { get; set; }
         public DbSet<MovimientoCaja> MovimientosCaja { get; set; }
+        public DbSet<Cliente> Clientes { get; set; }
+
     }
 }

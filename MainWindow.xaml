@@ -19,10 +19,21 @@
                     Width="120"
                     Height="30"
                     Margin="0,0,10,0"/>
-            <!-- Aquí puedes agregar más botones: Caja, Clientes, Reportes, etc. -->
+
+            <Button Content="Abrir Caja"
+                    Click="AbrirCaja_Click"
+                    Width="120"
+                    Height="30"
+                    Margin="0,0,10,0"/>
+
+            <Button Content="Clientes"
+                    Click="AbrirClientes_Click"
+                    Width="120"
+                    Height="30"
+                    Margin="0,0,10,0"/>
         </StackPanel>
 
-        <!-- Contenido principal -->
+        <!-- Contenido principal: CRUD Productos -->
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -31,7 +42,7 @@
                 <!-- Tabla de productos -->
             </Grid.RowDefinitions>
 
-            <!-- Formulario CRUD Productos -->
+            <!-- Formulario Productos -->
             <StackPanel Orientation="Vertical" Margin="0,0,0,10">
                 <TextBlock Text="Código de Barras"/>
                 <TextBox Name="CodigoBarrasTextBox" Margin="0,5"/>
