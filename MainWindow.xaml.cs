@@ -31,6 +31,36 @@ namespace KioscoApp
 
         private void GuardarProducto_Click(object sender, RoutedEventArgs e)
         {
+            // Validar campos vacíos
+            if (string.IsNullOrWhiteSpace(CodigoBarrasTextBox.Text) ||
+                string.IsNullOrWhiteSpace(NombreTextBox.Text) ||
+                string.IsNullOrWhiteSpace(PrecioCompraTextBox.Text) ||
+                string.IsNullOrWhiteSpace(PrecioVentaTextBox.Text) ||
+                string.IsNullOrWhiteSpace(StockTextBox.Text))
+            {
+                MessageBox.Show("Por favor completa todos los campos obligatorios.", "Validación", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            // Validar números válidos
+            if (!decimal.TryParse(PrecioCompraTextBox.Text, out decimal precioCompra))
+            {
+                MessageBox.Show("Precio de Compra no es válido.", "Validación", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (!decimal.TryParse(PrecioVentaTextBox.Text, out decimal precioVenta))
+            {
+                MessageBox.Show("Precio de Venta no es válido.", "Validación", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (!int.TryParse(StockTextBox.Text, out int stock))
+            {
+                MessageBox.Show("Stock no es válido.", "Validación", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
             if (productoEnEdicion == null)
             {
                 // Insertar nuevo
@@ -39,9 +69,9 @@ namespace KioscoApp
                     CodigoBarras = CodigoBarrasTextBox.Text,
                     Nombre = NombreTextBox.Text,
                     Descripcion = DescripcionTextBox.Text,
-                    PrecioCompra = decimal.Parse(PrecioCompraTextBox.Text),
-                    PrecioVenta = decimal.Parse(PrecioVentaTextBox.Text),
-                    Stock = int.Parse(StockTextBox.Text),
+                    PrecioCompra = precioCompra,
+                    PrecioVenta = precioVenta,
+                    Stock = stock,
                     Categoria = CategoriaTextBox.Text
                 };
 
@@ -53,9 +83,9 @@ namespace KioscoApp
                 productoEnEdicion.CodigoBarras = CodigoBarrasTextBox.Text;
                 productoEnEdicion.Nombre = NombreTextBox.Text;
                 productoEnEdicion.Descripcion = DescripcionTextBox.Text;
-                productoEnEdicion.PrecioCompra = decimal.Parse(PrecioCompraTextBox.Text);
-                productoEnEdicion.PrecioVenta = decimal.Parse(PrecioVentaTextBox.Text);
-                productoEnEdicion.Stock = int.Parse(StockTextBox.Text);
+                productoEnEdicion.PrecioCompra = precioCompra;
+                productoEnEdicion.PrecioVenta = precioVenta;
+                productoEnEdicion.Stock = stock;
                 productoEnEdicion.Categoria = CategoriaTextBox.Text;
 
                 _context.Productos.Update(productoEnEdicion);
@@ -63,11 +93,12 @@ namespace KioscoApp
             }
 
             _context.SaveChanges();
-            MessageBox.Show("Producto guardado!");
+            MessageBox.Show("Producto guardado correctamente!", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 
             CargarProductos();
             LimpiarFormulario();
         }
+
 
         private void LimpiarFormulario()
         {
