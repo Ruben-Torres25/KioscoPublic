@@ -28,6 +28,22 @@ namespace KioscoApp
             var productos = _context.Productos.ToList();
             ProductosDataGrid.ItemsSource = productos;
         }
+        private void Buscar_Click(object sender, RoutedEventArgs e)
+        {
+            string termino = BuscarTextBox.Text.Trim().ToLower();
+
+            var resultados = _context.Productos
+                .Where(p => p.Nombre.ToLower().Contains(termino) || p.CodigoBarras.ToLower().Contains(termino))
+                .ToList();
+
+            ProductosDataGrid.ItemsSource = resultados;
+        }
+
+        private void LimpiarBusqueda_Click(object sender, RoutedEventArgs e)
+        {
+            BuscarTextBox.Clear();
+            CargarProductos();
+        }
 
         private void GuardarProducto_Click(object sender, RoutedEventArgs e)
         {

@@ -36,6 +36,12 @@
         </StackPanel>
 
         <!-- Tabla de Productos -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,10,0,10" HorizontalAlignment="Right">
+            <TextBox x:Name="BuscarTextBox" Width="200" Margin="0,0,10,0" />
+            <Button Content="Buscar" Click="Buscar_Click"/>
+            <Button Content="Limpiar" Click="LimpiarBusqueda_Click" Margin="5,0,0,0"/>
+        </StackPanel>
+
         <DataGrid x:Name="ProductosDataGrid"
           Grid.Row="1"
           AutoGenerateColumns="False"
