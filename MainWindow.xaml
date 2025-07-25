@@ -22,41 +22,43 @@
 
             <StackPanel Grid.Column="0" Orientation="Vertical" Margin="0,0,20,0">
                 <Label Content="Código de Barras"/>
-                <TextBox Name="CodigoBarrasTextBox" Margin="0,5"/>
+                <TextBox Text="{Binding ProductoActual.CodigoBarras}" Margin="0,5"/>
 
                 <Label Content="Nombre"/>
-                <TextBox Name="NombreTextBox" Margin="0,5"/>
+                <TextBox Text="{Binding ProductoActual.Nombre}" Margin="0,5"/>
 
                 <Label Content="Descripción"/>
-                <TextBox Name="DescripcionTextBox" Margin="0,5"/>
+                <TextBox Text="{Binding ProductoActual.Descripcion}" Margin="0,5"/>
 
                 <Label Content="Precio Compra"/>
-                <TextBox Name="PrecioCompraTextBox" Margin="0,5"/>
+                <TextBox Text="{Binding ProductoActual.PrecioCompra}" Margin="0,5"/>
 
                 <Label Content="Precio Venta"/>
-                <TextBox Name="PrecioVentaTextBox" Margin="0,5"/>
+                <TextBox Text="{Binding ProductoActual.PrecioVenta}" Margin="0,5"/>
 
                 <Label Content="Stock"/>
-                <TextBox Name="StockTextBox" Margin="0,5"/>
+                <TextBox Text="{Binding ProductoActual.Stock}" Margin="0,5"/>
 
                 <Label Content="Categoría"/>
-                <TextBox Name="CategoriaTextBox" Margin="0,5"/>
+                <TextBox Text="{Binding ProductoActual.Categoria}" Margin="0,5"/>
 
-                <Button Content="Guardar Producto" Click="GuardarProducto_Click" Margin="0,10"/>
+                <Button Content="Guardar Producto"
+                        Command="{Binding GuardarCommand}"
+                        Margin="0,10"/>
             </StackPanel>
         </Grid>
 
-        <!-- Barra de búsqueda alineada -->
+        <!-- Barra de búsqueda -->
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,10">
             <Label Content="Buscar:" VerticalAlignment="Center"/>
-            <TextBox x:Name="BuscarTextBox" Width="200" Margin="5,0"/>
-            <Button Content="Buscar" Click="Buscar_Click" Margin="5,0"/>
-            <Button Content="Limpiar" Click="LimpiarBusqueda_Click" Margin="5,0"/>
+            <TextBox Text="{Binding TerminoBusqueda, UpdateSourceTrigger=PropertyChanged}" Width="200" Margin="5,0"/>
+            <Button Content="Buscar" Command="{Binding BuscarCommand}" Margin="5,0"/>
+            <Button Content="Limpiar" Command="{Binding LimpiarBusquedaCommand}" Margin="5,0"/>
         </StackPanel>
 
         <!-- Tabla de Productos -->
-        <DataGrid x:Name="ProductosDataGrid"
-                  Grid.Row="2"
+        <DataGrid Grid.Row="2"
+                  ItemsSource="{Binding Productos}"
                   AutoGenerateColumns="False"
                   IsReadOnly="True"
                   CanUserAddRows="False"
@@ -71,17 +73,26 @@
                 <DataGridTextColumn Header="Stock" Binding="{Binding Stock}"/>
                 <DataGridTextColumn Header="Categoría" Binding="{Binding Categoria}"/>
 
+                <!-- Acciones -->
                 <DataGridTemplateColumn Header="Acciones">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Button Content="Editar" Click="EditarProducto_Click" Margin="2"/>
-                                <Button Content="Eliminar" Click="EliminarProducto_Click" Margin="2"/>
+                                <Button Content="Editar"
+                                        Command="{Binding DataContext.EditarCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                        CommandParameter="{Binding}"
+                                        Margin="2"/>
+                                <Button Content="Eliminar"
+                                        Command="{Binding DataContext.EliminarCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                        CommandParameter="{Binding}"
+                                        Margin="2"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+
             </DataGrid.Columns>
         </DataGrid>
+
     </Grid>
 </Window>

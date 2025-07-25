@@ -1,19 +1,114 @@
-﻿# KioscoApp
+﻿# 🏪 KioscoApp
 
-Sistema de Gestión de Kiosco  
-**Tecnología:** .NET 6 WPF + PostgreSQL + Entity Framework Core
-
-## Estructura inicial
-- `KioscoApp/` → Proyecto principal WPF
-- `KioscoApp.sln` → Solución Visual Studio
-- `README.md` → Documentación
-
-## Objetivo
-Aplicación de escritorio para facturación, inventario, caja y gestión de kioscos, con facturación AFIP y ventas internas.
+**KioscoApp** es un sistema de gestión integral para kioscos, desarrollado en **C# WPF** con arquitectura **MVVM**, conexión a **PostgreSQL** y soporte para funcionalidades clave como facturación, control de stock, gestión de caja y reportes.
 
 ---
 
-### Cómo correrlo
-1. Abre la solución en Visual Studio 2022+
-2. Configura la cadena de conexión a PostgreSQL (lo haremos en pasos futuros)
-3. Ejecuta y prueba la interfaz base
+## 📌 **Características Principales**
+
+- CRUD de Productos (crear, listar, editar, eliminar)
+- Búsqueda en tiempo real por nombre o código de barras
+- Validaciones de datos de entrada
+- Arquitectura desacoplada **MVVM**
+- Conexión a **PostgreSQL** con Entity Framework Core
+- Base preparada para:
+  - Ventas rápidas (flujo de caja)
+  - Facturación AFIP y tickets internos
+  - Gestión de clientes y proveedores
+  - Manejo de roles de usuario
+  - Reportes operativos
+
+---
+
+## ⚙️ **Requisitos Técnicos**
+
+- **.NET 8.0** (o versión especificada en el `.csproj`)
+- **Visual Studio 2022** o superior
+- **PostgreSQL** (versión recomendada: 13+)
+- **pgAdmin** para gestionar la base de datos
+- Git para clonar y versionar
+
+---
+
+## 🗂️ **Estructura del Proyecto**
+
+KioscoApp/
+├── Models/ # Clases de entidad (Producto, Cliente, Venta, etc)
+├── ViewModels/ # Lógica de presentación (ProductoViewModel, etc)
+├── Views/ # Vistas XAML (MainWindow.xaml, futuras pantallas)
+├── Data/ # DbContext (KioscoDbContext)
+├── Helpers/ # RelayCommand y utilidades MVVM
+├── appsettings.json # Configuración de cadena de conexión PostgreSQL
+├── KioscoApp.csproj
+├── README.md
+
+
+---
+
+## 🔗 **Configuración de la Base de Datos**
+
+1. Instala PostgreSQL y pgAdmin.
+2. Crea una base de datos `KioscoDB` (o nombre que definas).
+3. Configura la cadena de conexión en `appsettings.json`:
+   ```json
+   {
+     "ConnectionStrings": {
+       "DefaultConnection": "Host=localhost;Database=KioscoDB;Username=postgres;Password=tu_clave"
+     }
+   }
+
+Ejecuta migraciones:
+
+bash
+Copiar
+Editar
+dotnet ef migrations add InitialCreate
+dotnet ef database update
+
+🚀 Cómo Ejecutar
+bash
+Copiar
+Editar
+git clone https://github.com/TU_USUARIO/KioscoApp.git
+cd KioscoApp
+dotnet build
+dotnet run
+O abre KioscoApp.sln en Visual Studio, compila y ejecuta.
+
+🔒 Próximos Módulos
+💵 Ventas rápidas con flujo de caja y POS
+
+📦 Gestión de stock y proveedores
+
+🧾 Facturación AFIP (WSAA + WSFEV1)
+
+👥 Roles de usuario (Dueño, Empleado)
+
+📊 Reportes y estadísticas
+
+🖨️ Integración con lector de códigos y ticketera
+
+🤝 Contribuciones
+Este proyecto está en desarrollo iterativo.
+Si quieres aportar mejoras, abre un Pull Request o crea un Issue.
+
+📧 Contacto
+Desarrollador: Ruben Torres
+Repositorio: KioscoApp
+
+🚀 ¡Gracias por usar y contribuir a KioscoApp!
+
+yaml
+Copiar
+Editar
+
+---
+
+## 📌 **Próximos pasos**
+
+1️⃣ Guarda este contenido como `README.md`.  
+2️⃣ Súbelo a tu repo:
+   ```bash
+   git add README.md
+   git commit -m "Agregar README inicial"
+   git push origin main
