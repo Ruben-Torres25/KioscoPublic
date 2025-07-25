@@ -17,7 +17,17 @@ namespace KioscoApp.ViewModels
         public ObservableCollection<Producto> Productos { get; set; }
         public ObservableCollection<Venta> VentasRealizadas { get; set; }
 
-        public Producto ProductoSeleccionado { get; set; }
+        private Producto _productoSeleccionado;
+        public Producto ProductoSeleccionado
+        {
+            get => _productoSeleccionado;
+            set
+            {
+                _productoSeleccionado = value;
+                OnPropertyChanged(nameof(ProductoSeleccionado));
+            }
+        }
+
         public int CantidadVenta { get; set; }
         public string CodigoBusqueda { get; set; }
         public string MetodoPago { get; set; } = "Efectivo";
@@ -112,6 +122,7 @@ namespace KioscoApp.ViewModels
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        protected void OnPropertyChanged(string name) =>
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }
 }

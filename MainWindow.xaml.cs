@@ -2,8 +2,6 @@
 using KioscoApp.ViewModels;
 using KioscoApp.Views;
 
-
-
 namespace KioscoApp
 {
     public partial class MainWindow : Window
@@ -16,10 +14,11 @@ namespace KioscoApp
             ViewModel = new ProductoViewModel();
             DataContext = ViewModel;
         }
-    }
-    private void AbrirVentas_Click(object sender, RoutedEventArgs e)
+
+        private void AbrirVentas_Click(object sender, RoutedEventArgs e)
         {
             var ventanaVenta = new VentaView();
             ventanaVenta.ShowDialog();
         }
     }
+}
