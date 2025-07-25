@@ -37,8 +37,33 @@
 
         <!-- Tabla de Productos -->
         <DataGrid x:Name="ProductosDataGrid"
-                  Grid.Row="1"
-                  AutoGenerateColumns="True"
-                  IsReadOnly="True"/>
+          Grid.Row="1"
+          AutoGenerateColumns="False"
+          IsReadOnly="True"
+          CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
+                <DataGridTextColumn Header="Código de Barras" Binding="{Binding CodigoBarras}" />
+                <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" />
+                <DataGridTextColumn Header="Descripción" Binding="{Binding Descripcion}" />
+                <DataGridTextColumn Header="Precio Compra" Binding="{Binding PrecioCompra}" />
+                <DataGridTextColumn Header="Precio Venta" Binding="{Binding PrecioVenta}" />
+                <DataGridTextColumn Header="Stock" Binding="{Binding Stock}" />
+                <DataGridTextColumn Header="Categoría" Binding="{Binding Categoria}" />
+
+                <!-- Botón Editar -->
+                <DataGridTemplateColumn Header="Acciones">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Editar" Click="EditarProducto_Click" Margin="2"/>
+                                <Button Content="Eliminar" Click="EliminarProducto_Click" Margin="2"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
     </Grid>
 </Window>
