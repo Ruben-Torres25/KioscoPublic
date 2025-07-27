@@ -32,5 +32,12 @@ namespace KioscoApp
             var ventanaClientes = new ClientesView();
             ventanaClientes.ShowDialog();
         }
+        private void AbrirProveedores_Click(object sender, RoutedEventArgs e)
+        {
+            var ventana = new Views.ProveedoresView();
+            ventana.ShowDialog();
+        }
+
+
     }
 }
