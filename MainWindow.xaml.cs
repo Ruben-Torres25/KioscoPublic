@@ -26,11 +26,11 @@ namespace KioscoApp
             var ventanaCaja = new CajaView();
             ventanaCaja.ShowDialog();
         }
+
         private void AbrirClientes_Click(object sender, RoutedEventArgs e)
         {
             var ventanaClientes = new ClientesView();
             ventanaClientes.ShowDialog();
         }
-
     }
 }
