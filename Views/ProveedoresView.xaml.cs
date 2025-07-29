@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using KioscoApp.Data;
 using KioscoApp.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace KioscoApp.Views
 {
@@ -14,7 +15,8 @@ namespace KioscoApp.Views
         public ProveedoresView()
         {
             InitializeComponent();
-            _db = new KioscoDbContext(App.AppHost.Services.GetService(typeof(KioscoDbContext)) as DbContextOptions<KioscoDbContext>);
+            _db = App.AppHost.Services.GetService(typeof(KioscoDbContext)) as KioscoDbContext;
+
             CargarProveedores();
         }
 

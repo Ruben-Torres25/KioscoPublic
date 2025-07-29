@@ -7,10 +7,12 @@ namespace KioscoApp.Models
         public int Id { get; set; }
 
         [Required]
-        public string Nombre { get; set; }
+        public string Nombre { get; set; } = string.Empty;
 
-        public string Cuit { get; set; }
+        [Required]
+        public string CUIT { get; set; } = string.Empty;
 
-        public string Contacto { get; set; }
+        [Required]
+        public string Contacto { get; set; } = string.Empty;
     }
 }
