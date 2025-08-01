@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace KioscoApp.Migrations
 {
     [DbContext(typeof(KioscoDbContext))]
-    [Migration("20250725230402_AddClientes")]
-    partial class AddClientes
+    [Migration("20250730131958_MigracionInicialUnificada")]
+    partial class MigracionInicialUnificada
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -113,6 +113,31 @@ namespace KioscoApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Productos");
+                });
+
+            modelBuilder.Entity("KioscoApp.Models.Proveedor", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CUIT")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Contacto")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Proveedores");
                 });
 
             modelBuilder.Entity("KioscoApp.Models.Venta", b =>

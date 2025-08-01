@@ -69,6 +69,10 @@ namespace KioscoApp.Migrations
                     b.Property<decimal>("Monto")
                         .HasColumnType("numeric");
 
+                    b.Property<string>("Tipo")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.HasKey("Id");
 
                     b.ToTable("MovimientosCaja");

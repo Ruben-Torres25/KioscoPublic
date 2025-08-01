@@ -1,54 +1,46 @@
 ﻿<Window x:Class="KioscoApp.Views.VentaView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Registrar Venta" Height="500" Width="800">
+        xmlns:vm="clr-namespace:KioscoApp.ViewModels"
+        Title="Ventas" Height="400" Width="600">
+    <Window.DataContext>
+        <vm:VentaViewModel />
+    </Window.DataContext>
 
     <Grid Margin="10">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300"/>
-            <!-- Formulario -->
-            <ColumnDefinition Width="*"/>
-            <!-- Tabla -->
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- Columna izquierda: Formulario -->
-        <StackPanel Grid.Column="0" Margin="0,0,20,0">
-            <!-- Buscar producto -->
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                <Label Content="Código de Barras:" VerticalAlignment="Center"/>
-                <TextBox Text="{Binding CodigoBusqueda}" Width="120" Margin="5,0"/>
-                <Button Content="Buscar" Command="{Binding BuscarProductoCommand}" Margin="5,0"/>
-            </StackPanel>
-
-            <!-- Detalles producto seleccionado -->
-            <Label Content="Producto Seleccionado:"/>
-            <TextBlock Text="{Binding ProductoSeleccionado.Nombre}" FontWeight="Bold"/>
-            <TextBlock Text="Precio:"/>
-            <TextBlock Text="{Binding ProductoSeleccionado.PrecioVenta}"/>
-            <TextBlock Text="Stock Disponible:"/>
-            <TextBlock Text="{Binding ProductoSeleccionado.Stock}"/>
-
-            <Label Content="Cantidad:"/>
-            <TextBox Text="{Binding CantidadVenta}" Width="50"/>
-
-            <Label Content="Método de Pago:"/>
-            <ComboBox SelectedValue="{Binding MetodoPago}" SelectedValuePath="Content">
-                <ComboBoxItem Content="Efectivo"/>
-                <ComboBoxItem Content="POS"/>
-            </ComboBox>
-
-            <Button Content="Registrar Venta"
-                    Command="{Binding RegistrarVentaCommand}"
-                    Margin="0,10"/>
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+            <TextBox Width="200" Text="{Binding CodigoBusqueda, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,10,0"/>
+            <Button Content="Buscar" Command="{Binding BuscarProductoCommand}" Width="80" Margin="0,0,10,0"/>
         </StackPanel>
 
-        <!-- Columna derecha: Tabla de ventas -->
-        <DataGrid Grid.Column="1"
-                  ItemsSource="{Binding VentasRealizadas}"
-                  AutoGenerateColumns="True"
-                  IsReadOnly="True"/>
+        <StackPanel Grid.Row="1" Margin="0,0,0,10">
+            <TextBlock Text="Producto seleccionado:" FontWeight="Bold"/>
+            <TextBlock Text="{Binding ProductoSeleccionado.Nombre}"/>
+            <TextBlock Text="{Binding ProductoSeleccionado.PrecioVenta, StringFormat='Precio: {0:C}'}"/>
+
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <Label Content="Cantidad:" VerticalAlignment="Center"/>
+                <TextBox Width="50" Text="{Binding CantidadSeleccionada}" Margin="5,0"/>
+                <Button Content="Agregar al carrito" Command="{Binding AgregarAlCarritoCommand}" Margin="10,0"/>
+            </StackPanel>
+        </StackPanel>
+
+        <DataGrid Grid.Row="2" ItemsSource="{Binding Carrito}" AutoGenerateColumns="False" Height="150" Margin="0,10,0,0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Producto" Binding="{Binding Producto.Nombre}" />
+                <DataGridTextColumn Header="Precio" Binding="{Binding Producto.PrecioVenta, StringFormat=C}" />
+                <DataGridTextColumn Header="Cantidad" Binding="{Binding Cantidad}" />
+                <DataGridTextColumn Header="Subtotal" Binding="{Binding Subtotal, StringFormat=C}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <TextBlock Grid.Row="2" Text="{Binding TotalVenta, StringFormat='Total: {0:C}'}" 
+                   HorizontalAlignment="Right" FontSize="16" FontWeight="Bold" Margin="0,10,0,0"/>
     </Grid>
 </Window>

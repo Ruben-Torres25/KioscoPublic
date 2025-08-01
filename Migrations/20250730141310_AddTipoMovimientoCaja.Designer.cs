@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace KioscoApp.Migrations
 {
     [DbContext(typeof(KioscoDbContext))]
-    [Migration("20250727220619_AddProveedores")]
-    partial class AddProveedores
+    [Migration("20250730141310_AddTipoMovimientoCaja")]
+    partial class AddTipoMovimientoCaja
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -72,6 +72,10 @@ namespace KioscoApp.Migrations
                     b.Property<decimal>("Monto")
                         .HasColumnType("numeric");
 
+                    b.Property<string>("Tipo")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.HasKey("Id");
 
                     b.ToTable("MovimientosCaja");
@@ -123,11 +127,11 @@ namespace KioscoApp.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Contacto")
+                    b.Property<string>("CUIT")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Cuit")
+                    b.Property<string>("Contacto")
                         .IsRequired()
                         .HasColumnType("text");
 

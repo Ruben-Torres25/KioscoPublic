@@ -17,9 +17,10 @@ namespace KioscoApp
 
         private void AbrirVentas_Click(object sender, RoutedEventArgs e)
         {
-            var ventanaVenta = new VentaView();
-            ventanaVenta.ShowDialog();
+            var ventasView = new VentasView();
+            ventasView.ShowDialog();
         }
+
 
         private void AbrirCaja_Click(object sender, RoutedEventArgs e)
         {

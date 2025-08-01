@@ -7,5 +7,6 @@
 
         public string Descripcion { get; set; }
         public decimal Monto { get; set; } // Positivo entrada, negativo salida
+        public string Tipo { get; set; } = string.Empty; // "Ingreso" o "Egreso"
     }
 }

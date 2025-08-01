@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using KioscoApp.ViewModels;
 
 namespace KioscoApp.Views
 {
@@ -8,7 +7,6 @@ namespace KioscoApp.Views
         public VentaView()
         {
             InitializeComponent();
-            DataContext = new VentaViewModel();
         }
     }
 }
